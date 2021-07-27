@@ -1,0 +1,144 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    background-image: -moz-radial-gradient(50% 50%, circle farthest-corner, #FFF 20%, #efeee7);
+    background-image: -webkit-radial-gradient(50% 50%, circle farthest-corner, #FFF 20%, #efeee7);
+    background-image: -o-radial-gradient(50% 50%, circle farthest-corner, #FFF 20%, #efeee7);
+    background-image: -ms-radial-gradient(50% 50%, circle farthest-corner, #FFF 20%, #efeee7);
+    background-image: radial-gradient(50% 50%, circle farthest-corner, #FFF 20%, #efeee7);
+}
+
+#container {
+    position: absolute;
+    width: 203.75px; 
+    height: 464px;
+    
+}
+.img {
+    position: absolute;
+    width: 203.75px; 
+    height: 464px;
+    background-image: url(../docs_sources/porte_emia.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.pt {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    margin-top: -15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.tl{
+    background-image: url(../docs_sources/poignee.png);
+}
+
+.br{
+    background-image: url(../docs_sources/poignee.png);
+    transform: rotate(180deg);
+    
+}
+
+.bl{
+    background-image: url(../docs_sources/poignee.png);
+    transform: rotate3d(1,0,0, 180deg);
+    
+}
+.tr{
+    background-image: url(../docs_sources/poignee.png);
+    transform: rotate3d(0,1, 0, 180deg);
+}
+
+
+.main{
+    
+    background-image: url(../docs_sources/maquette-faites_glisser_votre_photo.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain;
+    position: relative;
+    width: 80em;
+    height: 50em;
+    margin: 5px auto;
+    overflow: hidden;
+
+    
+}
+
+.btnMiroir {
+    background-image:url(../docs_sources/image_mirroir.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    
+    padding:16px 31px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+}
+.btnMiroir:hover {
+    
+}
+.btnMiroir:active {
+    position:relative;
+    top:1px;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+#header-menu{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:url(../docs_sources/maquette-menu.jpg);
+    
+}
+.drop-zone__input {
+    display: none;
+  }
+
+  .drop-zone {
+   
+  }
+  
+  .drop-zone--over {
+    border-style: solid;
+  }
+  
+  .drop-zone__input {
+    display: none;
+  }
+  
+  .drop-zone__thumb {
+    margin: 5px auto;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .drop-zone__thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .porte{
+      padding: 1em;
+      width: 20%;
+  }
