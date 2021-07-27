@@ -1,11 +1,13 @@
     
 $(function() {    
+    
     document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
     const dropZoneElement = inputElement.closest(".drop-zone");
   
-    dropZoneElement.addEventListener("click", (e) => {
+    $('.buttonImg').click(function() {
       inputElement.click();
-    });
+     
+    })
   
     inputElement.addEventListener("change", (e) => {
       if (inputElement.files.length) {
@@ -33,6 +35,7 @@ $(function() {
       }
   
       dropZoneElement.classList.remove("drop-zone--over");
+      
     });
   });
   
@@ -67,9 +70,11 @@ $(function() {
         console.log(`url('${reader.result}')`)
         thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
         $('.main').css('background-image',thumbnailElement.style.backgroundImage);
+        
       };
     } 
-      thumbnailElement.style.display='none';
-      $('input').disabled
+    $('.buttonImg').css('display','none')
+    thumbnailElement.style.display='none';
+    $('input').disabled
   }
 });

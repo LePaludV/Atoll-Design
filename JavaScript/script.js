@@ -28,7 +28,10 @@ var br = pts.filter(".br").css({
     top : transform.bottomRight.y
 });
 
-
+var btnMiroir = $('.btnMiroir').filter(".btnMiroir").css({
+    left : transform.bottomRight.x/2,
+    top : transform.bottomRight.y/2
+});
 
 
 var target;
@@ -73,7 +76,7 @@ pts.mousedown(function(e) {
 
 
 $( "#container" ).draggable({ cancel: "div.pt,div.pt2" });
-function porte(){
+function sensPorte(){
     console.log('avant modif  -> '+img.css('transform'))
     if(etatPorte==0){
         
@@ -88,8 +91,9 @@ function porte(){
 }
 
 $('.btnMiroir').click(function() {
+    
     etatPorte=(etatPorte+1)%2
-    porte()
+    sensPorte()
     
 });
 function checkState(){
@@ -130,20 +134,39 @@ var path="./docs_sources/porte_Mistral/"
 /* Fonction avec le nom de la gamme de porte choisi pour trouver le dossier de la gamme est récupéré les portes 
 besoin de le faire avec node.js server-side
 */
-function porte(nom){
-
+function initPorte(nom){
+    var cptID=0;
     while(nomPortes.length!=0){
         ligne=$("<div>",{class:"row "})
         url=nomPortes[0]
         nomPortes.shift()
-        ligne=$("<img>",{class:"porte",src:path+url})
+        ligne=$("<img>",{class:"porte",id:"porteNuméro_"+cptID,src:path+url})
         $('.portes').append(ligne)
-
+        cptID+=1;
     }
 
 }  
 
-porte(nom);
+
+
+$('.portes').click(function(e){
+    if(e.target.id.includes("porteNuméro_")){
+        console.log(e.target.id)
+    $('.img').css('background-image','url('+e.target.src+')');
+    $('#container').css('display','initial');
+    //$('#'+e.target.id).css('border','4px solid;')
+    }
+    else{
+        $('#container').css('display','none');
+    }
+
 });
 
-/*problème btn mirroir */
+function init(){
+    $('#container').css('display','none');
+    initPorte(nom);
+
+};
+init();
+});
+
