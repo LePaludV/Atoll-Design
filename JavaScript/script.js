@@ -75,7 +75,10 @@ pts.mousedown(function(e) {
 
 
 
-$( "#container" ).draggable({ cancel: "div.pt,div.pt2" });
+$( "#container" ).draggable({ cancel: "div.pt" });
+$('#container' ).on("taphold"),function (){
+    console.log("ça bouge");
+};
 function sensPorte(){
     console.log('avant modif  -> '+img.css('transform'))
     if(etatPorte==0){
