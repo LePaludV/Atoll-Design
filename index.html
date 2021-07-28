@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="css/reset.css" type="text/css"/>
     <link rel="stylesheet" href="css/drag_points.css" type="text/css"/>
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-    
+    <script src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="JavaScript/jquery.ui.touch-punch.js"></script>
     <script src="JavaScript/PerspectiveTransform.js-master/dist/PerspectiveTransform.js"></script>
+   
     <script src="JavaScript/script.js"></script>
     <script src="JavaScript/DragAndDrop.js"></script>
-   
+    <script src="JavaScript/camera.js"></script> 
     
     <title>Document</title>
 </head>
@@ -32,7 +33,20 @@
           <h1>MON <strong>PROJET</strong></h1>
           <div class="col-md-8 main drop-zone">
             <input type="file" name="myFile" class="drop-zone__input" accept="image/gif, image/png, image/jpeg, image/bmp, image/webp, image/jpg">
-            <a href="#" class="buttonImg position-absolute top-50 start-50 translate-middle">Sélectionner une photo sur votre ordinateur ou mobile</a>
+            <div class="position-absolute top-50 start-50 translate-middle">
+            <a href="#" class="buttonImg ">Sélectionner une photo sur votre ordinateur ou mobile</a>
+            <button type="button" class="btnPhoto btn btn-primary ">prendre une photo</button>
+          </div>
+            <div class="Camera">
+              <video id="webcam" class="w-75 h-75" autoplay playsinline width=1920 height=1080></video>
+              <canvas id="canvas" class="d-none img-responsive"></canvas>
+              <div class="option">
+              <button class="snap btn btn-primary">Prendre la photo</button>
+              <button class="valider btn btn-success">Valider la photo</button>
+              <button class="restart btn btn-warning">Prendre une autre photo</button>
+              </div>
+            </div>
+
             <div id="container">
               <div class="img"></div>
               <div class="pt tl"></div>
