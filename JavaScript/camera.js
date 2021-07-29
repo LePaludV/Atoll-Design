@@ -1,5 +1,8 @@
+
 $(function() {
-  console.log(navigator.userAgent);
+  console.log("type d'appareil : "+device.type);
+  console.log("type d'os : "+device.os);
+
   //test si c'est bien une tablette windows pour pouvoir afficher le bouton prendre une photo
     
     $('#select').hide();
@@ -15,7 +18,53 @@ $(function() {
        $('.valider').hide();
        $('.restart').hide();
        $('.change').hide();
+       $('.btnPhoto').hide();
+
+       function gotDevices(mediaDevices) {
+        cam=[];
+        select.innerHTML = '';
+        select.appendChild(document.createElement('option'));
+        let count = 1;
+        mediaDevices.forEach(mediaDevice => {
+          if (mediaDevice.kind === 'videoinput') {
+            const option = document.createElement('option');
+            option.value = mediaDevice.deviceId;
+            const label = mediaDevice.label || `Camera ${count++}`;
+            const textNode = document.createTextNode(label);
+            
+            option.appendChild(textNode);
+            select.appendChild(option);
+            cam.push(textNode)
+          }
+        });
+      }
+     
+
       
+ 
+   
+      function isSurface() {
+        const isWindows = navigator.userAgent.indexOf('Windows') > -1;
+        const maxTouchPoints = navigator.maxTouchPoints || navigator.msMaxTouchPoints;
+        const isTouchable = 'ontouchstart' in window
+          || maxTouchPoints > 0
+          || window.matchMedia && matchMedia('(any-pointer: coarse)').matches;
+      
+        return isWindows && isTouchable;
+      }
+     
+      if( navigator.maxTouchPoints > 1 && device.os=="windows"){
+        console.log("tablette windows")
+      }else{
+        console.log("pas tablette windows")
+       
+        console.log(navigator.maxTouchPoints > 1 )
+        console.log(device.os=="windows")
+      }
+      console.log('ontouchstart' in window)
+      if(navigator.maxTouchPoints > 1 && device.os=="windows"){
+
+        $('.btnPhoto').show();
        $('.snap').click(function(){
         var picture = webcam.snap();
         webcam.stop();
@@ -93,24 +142,7 @@ $(function() {
       });
     }
 
-    function gotDevices(mediaDevices) {
-      cam=[];
-      select.innerHTML = '';
-      select.appendChild(document.createElement('option'));
-      let count = 1;
-      mediaDevices.forEach(mediaDevice => {
-        if (mediaDevice.kind === 'videoinput') {
-          const option = document.createElement('option');
-          option.value = mediaDevice.deviceId;
-          const label = mediaDevice.label || `Camera ${count++}`;
-          const textNode = document.createTextNode(label);
-          
-          option.appendChild(textNode);
-          select.appendChild(option);
-          cam.push(textNode)
-        }
-      });
-    }
+    
 $('.change').click(function(){
   currentCam=(currentCam+1)%cam.length
   console.log(cam)
@@ -144,4 +176,5 @@ $('.change').click(function(){
     navigator.mediaDevices.enumerateDevices().then(gotDevices);
 
     //https://www.twilio.com/blog/choosing-cameras-javascript-mediadevices-api-html
+  }
       });
