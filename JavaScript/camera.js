@@ -1,14 +1,13 @@
 
 $(function() {
-  console.log("type d'appareil : "+device.type);
-  console.log("type d'os : "+device.os);
 
-  //test si c'est bien une tablette windows pour pouvoir afficher le bouton prendre une photo
-    
+  //Voir si possible d'enlever le select car pas utilisé
+  
+
+ 
     $('#select').hide();
     const webcamElement = document.getElementById('webcam');
     const canvasElement = document.getElementById('canvas');
-    //const select = document.getElementById('select');
     
     const webcam = new Webcam(webcamElement, 'enviroment', canvasElement);
     
@@ -53,15 +52,7 @@ $(function() {
         return isWindows && isTouchable;
       }
      
-      if( navigator.maxTouchPoints > 1 && device.os=="windows"){
-        console.log("tablette windows")
-      }else{
-        console.log("pas tablette windows")
-       
-        console.log(navigator.maxTouchPoints > 1 )
-        console.log(device.os=="windows")
-      }
-      console.log('ontouchstart' in window)
+      
       if(navigator.maxTouchPoints > 1 && device.os=="windows"){
 
         $('.btnPhoto').show();
@@ -145,8 +136,7 @@ $(function() {
     
 $('.change').click(function(){
   currentCam=(currentCam+1)%cam.length
-  console.log(cam)
-  console.log(currentCam)
+ 
   if (typeof currentStream !== 'undefined') {
     stopMediaTracks(currentStream);
   }

@@ -139,21 +139,41 @@ besoin de le faire avec node.js server-side
 */
 function initPorte(nom){
     var cptID=0;
+    console.log(Math.floor(nomPortes.length/3));
+    for(var row=0; row<(Math.floor(nomPortes.length/3))+1;row++){
+        var ligne=$("<ul>", { class : "row nrbRow_"+row })
+
+        for(var col=0; col<3;col++){
+            url=nomPortes[cptID]
+            if(cptID<nomPortes.length){
+            var colonne =$("<img>",{class:"col porte",id:"porteNuméro_"+row+"_"+col,src:path+url})
+            ligne.append(colonne)
+            cptID+=1;}
+            else{
+                var colonne =$("<img>",{class:"col",id:"porteNuméro_"+row+"_"+col})
+                colonne.css("opacity","0");
+            ligne.append(colonne)
+            }
+        }
+        $('.portes').append(ligne)
+    }
+/*
     while(nomPortes.length!=0){
-        ligne=$("<div>",{class:"row "})
+        
         url=nomPortes[0]
         nomPortes.shift()
         ligne=$("<img>",{class:"porte",id:"porteNuméro_"+cptID,src:path+url})
         $('.portes').append(ligne)
         cptID+=1;
     }
-
+*/
 }  
 
 
 
 $('.portes').click(function(e){
-    if(e.target.id.includes("porteNuméro_")){
+    
+    if(e.target.id.includes("porteNuméro_") && $('#'+e.target.id).css('opacity')==1){
         console.log(e.target.id)
     $('.img').css('background-image','url('+e.target.src+')');
     $('#container').css('display','initial');
@@ -167,6 +187,11 @@ $('.portes').click(function(e){
 
 function init(){
     $('#container').css('display','none');
+    console.log(device.type)
+    if(device.type=="mobile"){
+        $('.buttonImg').text('Sélectionner une photo ou prendre une photo')
+    }
+
     initPorte(nom);
 
 };

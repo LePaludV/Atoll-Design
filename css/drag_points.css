@@ -1,11 +1,16 @@
 html, body{
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
     background-image: -moz-radial-gradient(50% 50%, circle farthest-corner, #FFF 20%, #efeee7);
     background-image: -webkit-radial-gradient(50% 50%, circle farthest-corner, #FFF 20%, #efeee7);
     background-image: -o-radial-gradient(50% 50%, circle farthest-corner, #FFF 20%, #efeee7);
     background-image: -ms-radial-gradient(50% 50%, circle farthest-corner, #FFF 20%, #efeee7);
     background-image: radial-gradient(50% 50%, circle farthest-corner, #FFF 20%, #efeee7);
+}
+body{
+overflow: hidden;    
 }
 
 #container {
@@ -59,11 +64,11 @@ html, body{
     background-repeat: no-repeat;
     background-size:contain;
     position: relative;
-    width: 80em;
+    width: 75%;
     height: 50em;
-    margin: 5px auto;
+    margin-left: 1em;
     overflow: hidden;
-
+    
     
 }
 
@@ -95,10 +100,10 @@ html, body{
     flex-wrap: wrap;
 }
 #header-menu{
-    
+    width:100%;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image:url(../docs_sources/maquette-menu.jpg);
+    background-color:transparent;
     
 }
 .drop-zone__input {
@@ -142,8 +147,8 @@ html, body{
   }
   
   .porte{
-      margin: 1em;
-      width: 20%;
+      margin: 5px;
+      width: 5%;
       transition: border 10ms ease-in-out 100ms;
   }
 .porte:hover {
@@ -187,4 +192,35 @@ canvas {
     
 
 }
-    
+.portes{
+    height:50em;
+    width: auto;
+    border-radius: 1em;
+    background-color:#DFDFDF;
+    border:1px solid;
+    margin: 1em;
+    -webkit-overflow-scrolling: touch;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 12px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+}
