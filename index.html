@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="JavaScript/jquery.ui.touch-punch.js"></script>
     <script src="JavaScript/PerspectiveTransform.js-master/dist/PerspectiveTransform.js"></script>
+    <script src="https://unpkg.com/current-device/umd/current-device.min.js"></script>
    
     <script src="JavaScript/script.js"></script>
     <script src="JavaScript/DragAndDrop.js"></script>
@@ -44,6 +45,10 @@
               <button class="snap btn btn-primary">Prendre la photo</button>
               <button class="valider btn btn-success">Valider la photo</button>
               <button class="restart btn btn-warning">Prendre une autre photo</button>
+              <button class="change btn btn-info">changer de camera</button>
+              <select id="select">
+                <option></option>
+              </select>
               </div>
             </div>
 

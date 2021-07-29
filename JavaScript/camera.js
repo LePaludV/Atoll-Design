@@ -1,25 +1,27 @@
 $(function() {
-  
+  console.log(navigator.userAgent);
   //test si c'est bien une tablette windows pour pouvoir afficher le bouton prendre une photo
     
-    
+    $('#select').hide();
     const webcamElement = document.getElementById('webcam');
     const canvasElement = document.getElementById('canvas');
+    //const select = document.getElementById('select');
     
-    
-    const webcam = new Webcam(webcamElement, 'user', canvasElement);
+    const webcam = new Webcam(webcamElement, 'enviroment', canvasElement);
     
     
     
        $('.snap').hide();
        $('.valider').hide();
        $('.restart').hide();
+       $('.change').hide();
       
        $('.snap').click(function(){
         var picture = webcam.snap();
         webcam.stop();
         $('#canvas').hide();
         $('.snap').hide();
+        $('.change').hide();
         $('.valider').show();
         $('.restart').show();
        
@@ -34,12 +36,13 @@ $(function() {
         .catch(err => {
             console.log(err);
         });
+        $('.change').show();
         $('.snap').show();
       }
       $('.btnPhoto').click(function(){
 
         camera();
-        
+      $('.buttonImg').hide();
        $('.btnPhoto').hide();
        
        
@@ -65,4 +68,80 @@ $(function() {
         $('.buttonImg').css('display','none')
      
       })
+
+      
+
+    
+      
+      if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+        console.log("enumerateDevices() not supported.");
+        return;
+      }
+      
+      
+      
+    const video = document.getElementById('webcam');
+    const button = document.getElementsByClassName('btnPhoto');
+    const select = document.getElementById('select');
+    var cam=[];
+    let currentStream;
+    var currentCam=0;
+
+    function stopMediaTracks(stream) {
+      stream.getTracks().forEach(track => {
+        track.stop();
+      });
+    }
+
+    function gotDevices(mediaDevices) {
+      cam=[];
+      select.innerHTML = '';
+      select.appendChild(document.createElement('option'));
+      let count = 1;
+      mediaDevices.forEach(mediaDevice => {
+        if (mediaDevice.kind === 'videoinput') {
+          const option = document.createElement('option');
+          option.value = mediaDevice.deviceId;
+          const label = mediaDevice.label || `Camera ${count++}`;
+          const textNode = document.createTextNode(label);
+          
+          option.appendChild(textNode);
+          select.appendChild(option);
+          cam.push(textNode)
+        }
+      });
+    }
+$('.change').click(function(){
+  currentCam=(currentCam+1)%cam.length
+  console.log(cam)
+  console.log(currentCam)
+  if (typeof currentStream !== 'undefined') {
+    stopMediaTracks(currentStream);
+  }
+  const videoConstraints = {};
+  
+  console.log(cam[currentCam].parentNode.value)
+  videoConstraints.deviceId = { exact: cam[currentCam].parentNode.value };
+  
+  const constraints = {
+    video: videoConstraints,
+    audio: false
+  };
+  navigator.mediaDevices
+    .getUserMedia(constraints)
+    .then(stream => {
+      currentStream = stream;
+      video.srcObject = stream;
+      return navigator.mediaDevices.enumerateDevices();
+    })
+    .then(gotDevices)
+    .catch(error => {
+      console.error(error);
+    });
+})
+    
+
+    navigator.mediaDevices.enumerateDevices().then(gotDevices);
+
+    //https://www.twilio.com/blog/choosing-cameras-javascript-mediadevices-api-html
       });
