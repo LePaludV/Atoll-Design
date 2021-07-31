@@ -13,22 +13,11 @@ html{
     min-height: 100%;
     position: relative;
 }
-
-.containerPorte{
-    position: absolute;
-    
-    top:0px;
-    left:0px;
-    
-    /* paramètre à modifier en js pour changer de produit (prendre la taille de l'autre image à utilisé 
-    */width: 815px; 
-    height: 1856px;
-}
 /*Porte du configurateur */
 #container {
     position: absolute;
-    width: 20%;
-    height: 20%;
+    width: 203.75px; 
+    height: 464px;
     cursor: move;
     top:0px;
     left:0px;
@@ -42,7 +31,7 @@ html{
 .img {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height:100%;
     background-image: url(../docs_sources/porte_emia.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
@@ -52,8 +41,8 @@ html{
 }
 .pt {
     position: absolute;
-    width: 19%;
-    height: 8%;
+    width: 30px;
+    height: 30px;
     margin-left: -15px;
     margin-top: -15px;
     border-radius: 15px;
@@ -102,18 +91,19 @@ html{
 .portes{
 
     width: auto;
-    border-radius: 1em;
+    
+}
+.contPorte{
+    margin: 1em;
+    border-radius: 0.2em;
     background-color:#DFDFDF;
     border:1px solid;
-    
-    -webkit-overflow-scrolling: touch;
-    
 }
 
 .content{
     
     padding:2em;
-    height:100vh;
+    height:80vh ;
     flex-wrap:initial !important;
 }
 #txtMain1{
@@ -216,9 +206,12 @@ html{
     text-align: center;
   }
   
+  .colPorte{
+      width:10wv;
+  }
   .porte{
-      margin: 5px;
-      width: 5%;
+      margin: 1em 0 1em 0;
+      width:100% ;
       transition: border 10ms ease-in-out 100ms;
   }
 .porte:hover {
@@ -288,16 +281,3 @@ canvas {
     background-color: #ffffff;
 }
 
-@media (max-width: 900px) {
-    #container {
-
-        width: 10%;
-        height:10%;
-    }
-
-    .pt {
-
-        width: 36%;
-        height: 16%;
-    }
-}

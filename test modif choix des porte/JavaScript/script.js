@@ -3,8 +3,8 @@ var container = $("#container");
 var img = $(".img");
 var pts = $(".pt");
 
-var IMG_WIDTH = container.width();
-var IMG_HEIGHT = container.height();
+var IMG_WIDTH = img.width();
+var IMG_HEIGHT = img.height();
 var etatPorte=0;
 
 
@@ -139,6 +139,7 @@ besoin de le faire avec node.js server-side
 */
 function initPorte(nom){
     var cptID=0;
+    /*
     console.log(Math.floor(nomPortes.length/3));
     for(var row=0; row<(Math.floor(nomPortes.length/3))+1;row++){
         var ligne=$("<ul>", { class : "row nrbRow_"+row })
@@ -156,23 +157,25 @@ function initPorte(nom){
             }
         }
         $('.portes').append(ligne)
-    }
-/*
+    }*/
+
     while(nomPortes.length!=0){
         
         url=nomPortes[0]
         nomPortes.shift()
-        ligne=$("<img>",{class:"porte",id:"porteNuméro_"+cptID,src:path+url})
-        $('.portes').append(ligne)
+        img=$("<img>",{class:"porte",id:"porteNuméro_"+cptID,src:path+url})
+        col=$("<div>",{class:"col colPorte"})
+        col.append(img)
+        $('.portes').append(col)
         cptID+=1;
     }
-*/
+
 }  
 
 
 
 $('.portes').click(function(e){
-    $('.containerPorte').show()
+    
     if(e.target.id.includes("porteNuméro_") && $('#'+e.target.id).css('opacity')==1){
         console.log(e.target.id)
     $('.img').css('background-image','url('+e.target.src+')');
@@ -181,7 +184,6 @@ $('.portes').click(function(e){
     }
     else{
         $('#container').css('display','none');
-        $('.containerPorte').hide()
     }
 
 });
@@ -189,7 +191,6 @@ $('.portes').click(function(e){
 function init(){
     console.log(device.type);
     $('#container').css('display','none');
-    $('.containerPorte').hide()
     console.log(device.type)
     if(device.type=="mobile" || device.type=="tablet" ||device.os=="ipad"){
         $('.buttonImg').text('Sélectionner une photo ou prendre une photo')
@@ -199,46 +200,6 @@ function init(){
     initPorte(nom);
 
 };
-
-$(window).resize(function(){
-    
-   console.log("resize") 
-
-   var container = $("#container");
-    var img = $(".img");
-    var pts = $(".pt");
-   
-    var IMG_WIDTH = img.width();
-    var IMG_HEIGHT = img.height();
-    var etatPorte=0;
-
-   var transform = new PerspectiveTransform(img[0], IMG_WIDTH, IMG_HEIGHT, true);
-
-var tl = pts.filter(".tl").css({
-    left : transform.topLeft.x,
-    top : transform.topLeft.y
-});
-var tr = pts.filter(".tr").css({
-    left : transform.topRight.x,
-    top : transform.topRight.y
-});
-var bl = pts.filter(".bl").css({
-    left : transform.bottomLeft.x,
-    top : transform.bottomLeft.y
-});
-var br = pts.filter(".br").css({
-    left : transform.bottomRight.x,
-    top : transform.bottomRight.y
-});
-
-var btnMiroir = $('.btnMiroir').filter(".btnMiroir").css({
-    left : transform.bottomRight.x/2,
-    top : transform.bottomRight.y/2
-});
-
-   $('.pt').hide();
-   $('.pt').show();
-});
 init();
 
 
