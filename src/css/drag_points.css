@@ -126,7 +126,7 @@ html {
 
 .content {
   padding: 2em;
-  height: 100vh;
+  height: 90vh;
   flex-wrap: initial !important;
 }
 #txtMain1 {
@@ -300,4 +300,15 @@ canvas {
     width: 36%;
     height: 16%;
   }
+}
+.footer{
+  padding-left: 2em;
+  padding-right: 2em;
+  height: 10vh;
+  
+}
+.footer img{
+  max-width: 5%;
+  height: auto;
+  
 }
