@@ -1,0 +1,303 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: -moz-radial-gradient(
+    50% 50%,
+    circle farthest-corner,
+    #fff 20%,
+    #efeee7
+  );
+  background-image: -webkit-radial-gradient(
+    50% 50%,
+    circle farthest-corner,
+    #fff 20%,
+    #efeee7
+  );
+  background-image: -o-radial-gradient(
+    50% 50%,
+    circle farthest-corner,
+    #fff 20%,
+    #efeee7
+  );
+  background-image: -ms-radial-gradient(
+    50% 50%,
+    circle farthest-corner,
+    #fff 20%,
+    #efeee7
+  );
+  background-image: radial-gradient(
+    50% 50%,
+    circle farthest-corner,
+    #fff 20%,
+    #efeee7
+  );
+}
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+.containerPorte {
+  position: absolute;
+
+  top: 0px;
+  left: 0px;
+
+  /* paramètre à modifier en js pour changer de produit (prendre la taille de l'autre image à utilisé 
+    */
+  width: 815px;
+  height: 1856px;
+}
+/*Porte du configurateur */
+#container {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  cursor: move;
+  top: 0px;
+  left: 0px;
+}
+
+/*    width: 203.75px; 
+    height: 464px;*/
+.img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(../docs_sources/porte_emia.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.img,
+#container {
+}
+.pt {
+  position: absolute;
+  width: 19%;
+  height: 8%;
+  margin-left: -15px;
+  margin-top: -15px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.tl {
+  background-image: url(../docs_sources/poignee.png);
+}
+
+.br {
+  background-image: url(../docs_sources/poignee.png);
+  transform: rotate(180deg);
+}
+
+.bl {
+  background-image: url(../docs_sources/poignee.png);
+  transform: rotate3d(1, 0, 0, 180deg);
+}
+.tr {
+  background-image: url(../docs_sources/poignee.png);
+  transform: rotate3d(0, 1, 0, 180deg);
+}
+
+.main {
+  border: 5px dashed #c7c8c8;
+  border-radius: 10px;
+  background-color: white;
+  /*background-image: url(../docs_sources/maquette-faites_glisser_votre_photo.png); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  width: 75%;
+
+  overflow: hidden;
+}
+
+.portes {
+  width: auto;
+  border-radius: 1em;
+  background-color: #dfdfdf;
+  border: 1px solid;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.content {
+  padding: 2em;
+  height: 100vh;
+  flex-wrap: initial !important;
+}
+#txtMain1 {
+  font-size: 3vw;
+  color: #999b9a;
+  font-weight: bold;
+}
+
+#txtMain2 {
+  font-size: 90%;
+  color: #999b9a;
+  margin-bottom: 1em;
+}
+
+.btnMain {
+  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 1em;
+}
+.btnMain > img {
+  width: 10%;
+}
+.btnMain > button {
+  font-size: 90%;
+}
+
+.btnMiroir {
+  background-image: url(../docs_sources/image_mirroir.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  display: inline-block;
+  cursor: pointer;
+
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.btnMiroir:hover {
+}
+.btnMiroir:active {
+  position: relative;
+  top: 1px;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+#header-menu {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+}
+.drop-zone__input {
+  display: none;
+}
+
+.drop-zone {
+}
+
+.drop-zone--over {
+  border-style: solid;
+}
+
+.drop-zone__input {
+  display: none;
+}
+
+.drop-zone__thumb {
+  margin: 5px auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #cccccc;
+  background-size: cover;
+  position: relative;
+}
+
+.drop-zone__thumb::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 14px;
+  text-align: center;
+}
+
+.porte {
+  margin: 5px;
+  width: 5%;
+  transition: border 10ms ease-in-out 100ms;
+}
+.porte:hover {
+  border: 3px solid;
+}
+
+.buttonImg {
+  text-align: center;
+  background-color: #4889f1;
+  border-radius: 10px;
+  border: 1px solid #4e6096;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 19px;
+  padding: 12px 37px;
+  text-decoration: none;
+  margin: auto;
+}
+.buttonImg:hover {
+  background-color: #476e9e;
+}
+.buttonImg:active {
+  position: relative;
+  top: 1px;
+}
+
+canvas {
+  background-color: blue;
+  width: 100%;
+  height: 100%;
+}
+.btnPhoto {
+  display: block;
+
+  margin: 1em auto 0 auto;
+  border-radius: 1em;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+  width: 12px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  #container {
+    width: 10%;
+    height: 10%;
+  }
+
+  .pt {
+    width: 36%;
+    height: 16%;
+  }
+}
