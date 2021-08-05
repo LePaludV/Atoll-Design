@@ -8,15 +8,17 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="css/reset.css" type="text/css" />
   <link rel="stylesheet" href="css/drag_points.css" type="text/css" />
+  
   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <script src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
   <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script src="https://code.jquery.com/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="JavaScript/jquery.ui.touch-punch.js"></script>
   <script src="JavaScript/PerspectiveTransform.js-master/dist/PerspectiveTransform.js"></script>
   <script src="https://unpkg.com/current-device/umd/current-device.min.js"></script>
-
+  <script src="JavaScript/screenshot.js"></script>
   <script src="JavaScript/script.js"></script>
   <script src="JavaScript/DragAndDrop.js"></script>
   <script src="JavaScript/camera.js"></script>
@@ -32,7 +34,7 @@
     <div class="content row  ">
 
 
-      <div class="col-8 main drop-zone">
+      <div class="col-8 main drop-zone" id="div">
         <input type="file" name="myFile" class="drop-zone__input"
           accept="image/gif, image/png, image/jpeg, image/bmp, image/webp, image/jpg">
         <div class="btnMain">
@@ -58,10 +60,10 @@
           </div>
         </div>
         <div class="containerPorte ">
-          <div id="container">
+          <div id="container" >
 
 
-            <div class="img"></div>
+            <div class="img" ></div>
             <div class="pt tl"></div>
             <div class="pt tr"></div>
             <div class="pt bl"></div>
@@ -80,9 +82,9 @@
     <div class="footer row">
     
       <div class="col-auto">
-      <button type="button" class="Primt btn btn-outline-secondary">
+      <button type="button" class="Save btn btn-outline-secondary">
         
-    <img src="docs_sources/printer.png" alt="Imprimer l'image">
+    <img src="docs_sources/download.png" alt="Imprimer l'image">
     Enregistrer l'image
         
       </button>

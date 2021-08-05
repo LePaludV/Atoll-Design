@@ -250,5 +250,23 @@ besoin de le faire avec node.js server-side
     $(".pt").hide();
     $(".pt").show();
   });
+
+  $(".Save").click(function () {
+    $("#div").children().attr("crossorigin", "anonymous");
+    $("#container").attr("crossorigin", "anonymous");
+    $("#container").children().attr("crossorigin", "anonymous");
+    $(".pt").hide();
+    $(".btnMiroir").hide();
+    html2canvas(document.querySelector("#div")).then((canvas) => {
+      var img = new Image();
+      var img = canvas.toDataURL();
+
+      var a = document.createElement("a");
+      a.download = "Porte.png";
+      a.href = img;
+      a.click();
+    });
+  });
+
   init();
 });
