@@ -8,7 +8,7 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="css/reset.css" type="text/css" />
   <link rel="stylesheet" href="css/drag_points.css" type="text/css" />
-  
+
   <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
   <script src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
   <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -60,15 +60,20 @@
           </div>
         </div>
         <div class="containerPorte ">
-          <div id="container" >
+
+          <div id="container">
 
 
-            <div class="img" ></div>
-            <div class="pt tl"></div>
-            <div class="pt tr"></div>
-            <div class="pt bl"></div>
-            <div class="pt br"></div>
+            <div class="img"></div>
+
+            <div id="p1" class="pt tl"></div>
+            <div id="p2" class="pt tr"></div>
+            <div id="p3" class="pt bl"></div>
+            <div id="p4" class="pt br"></div>
             <a href="#" class="btnMiroir"></a>
+
+            <input type="range" min="1" max="100" value="100" class="form-range slider" id="myRange">
+
           </div>
         </div>
       </div>
@@ -80,15 +85,15 @@
 
     </div>
     <div class="footer row">
-    
+
       <div class="col-auto">
-      <button type="button" class="Save btn btn-outline-secondary">
-        
-    <img src="docs_sources/download.png" alt="Imprimer l'image">
-    Enregistrer l'image
-        
-      </button>
-    </div>
+        <button type="button" class="Save btn btn-outline-secondary">
+
+          <img src="docs_sources/download.png" alt="Imprimer l'image">
+          Enregistrer l'image
+
+        </button>
+      </div>
     </div>
   </div>
 

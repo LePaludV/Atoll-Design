@@ -73,7 +73,7 @@ $(function () {
     });
   });
 
-  $("#container").draggable({ cancel: "div.pt" });
+  $("#container").draggable({ cancel: "div.pt, .slider"});
   $("#container").on("taphold"),
     function () {
       console.log("ça bouge");
@@ -85,7 +85,12 @@ $(function () {
       console.log("APRES modif -> " + img.css("transform"));
     }
     if (etatPorte == 1) {
+      // $('#container').css("transform", " rotate3d(0, 1, 0, 180deg)");
       img.css("transform", " rotate3d(0, 1, 0, 180deg)");
+      // $('#p1').attr('class','pt tr')
+      // $('#p2').attr('class','pt tl')
+      // $('#p3').attr('class','pt br')
+      // $('#p4').attr('class','pt bl')
     }
     console.log("APRES  modif -> " + img.css("transform"));
   }
@@ -247,16 +252,24 @@ besoin de le faire avec node.js server-side
         top: transform.bottomRight.y / 2,
       });
 
+      var slider = $(".slider")
+      .filter(".slider")
+      .css({
+        
+        top: transform.bottomRight.y / (2.2),
+      });
+
     $(".pt").hide();
     $(".pt").show();
   });
 
   $(".Save").click(function () {
-    $("#div").children().attr("crossorigin", "anonymous");
-    $("#container").attr("crossorigin", "anonymous");
-    $("#container").children().attr("crossorigin", "anonymous");
+    // $("#div").children().attr("crossorigin", "anonymous");
+    // $("#container").attr("crossorigin", "anonymous");
+    // $("#container").children().attr("crossorigin", "anonymous");
     $(".pt").hide();
     $(".btnMiroir").hide();
+    $('.slider').hide()
     html2canvas(document.querySelector("#div")).then((canvas) => {
       var img = new Image();
       var img = canvas.toDataURL();
@@ -268,5 +281,13 @@ besoin de le faire avec node.js server-side
     });
   });
 
+
+  var slider = document.getElementById("myRange");
+  
+  $('.img').css('filter','brightness('+slider.value+'%)');
+  
+  slider.oninput = function() {
+    $('.img').css('filter','brightness('+this.value+'%)');
+  }
   init();
 });

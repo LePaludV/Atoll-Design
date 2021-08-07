@@ -312,3 +312,9 @@ canvas {
   height: auto;
   
 }
+
+.slider {
+  position: absolute;
+display: inline-block;
+top: 55%;
+}
