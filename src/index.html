@@ -65,14 +65,14 @@
 
 
             <div class="img"></div>
+            <input type="range" min="1" max="100" value="100" class="form-range slider" id="myRange">
 
             <div id="p1" class="pt tl"></div>
             <div id="p2" class="pt tr"></div>
             <div id="p3" class="pt bl"></div>
             <div id="p4" class="pt br"></div>
-            <a href="#" class="btnMiroir"></a>
+            <!-- <a href="#" class="btnMiroir"></a> btn miroir non fonctionnel pour l'instant -->
 
-            <input type="range" min="1" max="100" value="100" class="form-range slider" id="myRange">
 
           </div>
         </div>
@@ -86,13 +86,21 @@
     </div>
     <div class="footer row">
 
-      <div class="col-auto">
-        <button type="button" class="Save btn btn-outline-secondary">
+      <div class="col">
 
+        <button type="button" class="Save btn btn-outline-secondary">
           <img src="docs_sources/download.png" alt="Imprimer l'image">
           Enregistrer l'image
-
         </button>
+      </div>
+        <div class="col">
+          
+          <button type="button" class="lock btn btn-outline-secondary">
+            <img class='lockImg' src="docs_sources/unlock.png" alt="verrouiller la porte">
+          </button>
+
+
+        
       </div>
     </div>
   </div>

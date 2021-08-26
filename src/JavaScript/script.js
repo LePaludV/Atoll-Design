@@ -73,7 +73,8 @@ $(function () {
     });
   });
 
-  $("#container").draggable({ cancel: "div.pt, .slider"});
+  $("#container").draggable({ cancel: "div.pt, .slider" });
+
   $("#container").on("taphold"),
     function () {
       console.log("ça bouge");
@@ -252,11 +253,10 @@ besoin de le faire avec node.js server-side
         top: transform.bottomRight.y / 2,
       });
 
-      var slider = $(".slider")
+    var slider = $(".slider")
       .filter(".slider")
       .css({
-        
-        top: transform.bottomRight.y / (2.2),
+        top: transform.bottomRight.y / 2.2,
       });
 
     $(".pt").hide();
@@ -269,7 +269,7 @@ besoin de le faire avec node.js server-side
     // $("#container").children().attr("crossorigin", "anonymous");
     $(".pt").hide();
     $(".btnMiroir").hide();
-    $('.slider').hide()
+    $(".slider").hide();
     html2canvas(document.querySelector("#div")).then((canvas) => {
       var img = new Image();
       var img = canvas.toDataURL();
@@ -281,13 +281,33 @@ besoin de le faire avec node.js server-side
     });
   });
 
+  //Bouton lock : verrouille la porte = les icnon disparaisse et plus possible de drag l'image.
+  var isLock = false;
+  $(".lock").click(function () {
+    if (isLock) {
+      $(".pt").show();
+      $(".slider").show();
+      $("#container").draggable("enable");
+      $(".lockImg").attr("src", "docs_sources/unlock.png");
+      $("#container").css("cursor", "move");
+
+      isLock = false;
+    } else {
+      $(".pt").hide();
+      $(".slider").hide();
+      $("#container").draggable("disable");
+      $(".lockImg").attr("src", "docs_sources/padlock.png");
+      $("#container").css("cursor", "not-allowed");
+      isLock = true;
+    }
+  });
 
   var slider = document.getElementById("myRange");
-  
-  $('.img').css('filter','brightness('+slider.value+'%)');
-  
-  slider.oninput = function() {
-    $('.img').css('filter','brightness('+this.value+'%)');
-  }
+
+  $(".img").css("filter", "brightness(" + slider.value + "%)");
+
+  slider.oninput = function () {
+    $(".img").css("filter", "brightness(" + this.value + "%)");
+  };
   init();
 });
