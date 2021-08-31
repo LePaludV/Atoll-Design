@@ -26,12 +26,12 @@ $(function () {
     top: transform.bottomRight.y,
   });
 
-  var btnMiroir = $(".btnMiroir")
-    .filter(".btnMiroir")
-    .css({
-      left: transform.bottomRight.x / 2,
-      top: transform.bottomRight.y / 2,
-    });
+  // var btnMiroir = $(".btnMiroir")
+  //   .filter(".btnMiroir")
+  //   .css({
+  //     left: transform.bottomRight.x / 2,
+  //     top: transform.bottomRight.y / 2,
+  //   });
 
   var target;
   var targetPoint;
@@ -68,7 +68,7 @@ $(function () {
     $(window).mousemove(onMouseMove);
     $(window).mouseup(function () {
       img.css("opacity", "1");
-      checkState();
+      //checkState();
       $(window).unbind("mousemove", onMouseMove);
     });
   });
@@ -79,40 +79,46 @@ $(function () {
     function () {
       console.log("ça bouge");
     };
-  function sensPorte() {
-    console.log("avant modif  -> " + img.css("transform"));
-    if (etatPorte == 0) {
-      img.css("transform", " rotate3d(0, 1, 0, 0deg)");
-      console.log("APRES modif -> " + img.css("transform"));
-    }
-    if (etatPorte == 1) {
-      // $('#container').css("transform", " rotate3d(0, 1, 0, 180deg)");
-      img.css("transform", " rotate3d(0, 1, 0, 180deg)");
-      // $('#p1').attr('class','pt tr')
-      // $('#p2').attr('class','pt tl')
-      // $('#p3').attr('class','pt br')
-      // $('#p4').attr('class','pt bl')
-    }
-    console.log("APRES  modif -> " + img.css("transform"));
-  }
 
-  $(".btnMiroir").click(function () {
-    etatPorte = (etatPorte + 1) % 2;
-    sensPorte();
-  });
-  function checkState() {
-    if (etatPorte == 1) {
-      var temp = img.css("transform");
-      temp = temp.slice(9);
-      temp = temp.split(",");
-      if (temp[0].indexOf("-") == -1) {
-        temp[0] = temp[0] * -1;
-      }
+  // ------------Fonction Miroir -----------------   
+  // function sensPorte() {
+  //   console.log("avant modif  -> " + img.css("transform"));
+  //   if (etatPorte == 0) {
+  //     img.css("transform", " rotate3d(0, 1, 0, 0deg)");
+  //     console.log("APRES modif -> " + img.css("transform"));
+  //   }
+  //   if (etatPorte == 1) {
+  //     // $('#container').css("transform", " rotate3d(0, 1, 0, 180deg)");
+  //     img.css("transform", " rotate3d(0, 1, 0, 180deg)");
+  //     // $('#p1').attr('class','pt tr')
+  //     // $('#p2').attr('class','pt tl')
+  //     // $('#p3').attr('class','pt br')
+  //     // $('#p4').attr('class','pt bl')
+  //   }
+  //   console.log("APRES  modif -> " + img.css("transform"));
+  // }
 
-      console.log(temp);
-      img.css("transform", " matrix3d(" + temp.concat());
-    }
-  }
+  // $(".btnMiroir").click(function () {
+  //   etatPorte = (etatPorte + 1) % 2;
+  //   sensPorte();
+  // });
+
+  // ####Regarde l'état de la porte pour en deduire le sens (miroir ou pas)
+  // et modifier une valeur de la matrice 3d de la porte.
+
+  // function checkState() {
+  //   if (etatPorte == 1) {
+  //     var temp = img.css("transform");
+  //     temp = temp.slice(9);
+  //     temp = temp.split(",");
+  //     if (temp[0].indexOf("-") == -1) {
+  //       temp[0] = temp[0] * -1;
+  //     }
+
+  //     console.log(temp);
+  //     img.css("transform", " matrix3d(" + temp.concat());
+  //   }
+  // }
 
   var nomPortes = [
     "battante-mistral-brun-cuir-brosse-2878-13034.jpg",
@@ -179,21 +185,24 @@ besoin de le faire avec node.js server-side
 */
   }
 
-  $(".portes").click(function (e) {
-    $(".containerPorte").show();
-    if (
-      e.target.id.includes("porteNuméro_") &&
-      $("#" + e.target.id).css("opacity") == 1
-    ) {
-      console.log(e.target.id);
-      $(".img").css("background-image", "url(" + e.target.src + ")");
-      $("#container").css("display", "initial");
-      //$('#'+e.target.id).css('border','4px solid;')
-    } else {
-      $("#container").css("display", "none");
-      $(".containerPorte").hide();
-    }
-  });
+//Affiche l'objet selectionné dans le menu sur le configurateur 
+
+// $(".portes").click(function (e) {
+//   $(".containerPorte").show();
+ 
+//   if (
+//     e.target.id.includes("porteNuméro_") &&
+//     $("#" + e.target.id).css("opacity") == 1
+//   ) {
+//     console.log(e.target.id);
+//     $(".img").css("background-image", "url(" + e.target.src + ")");
+//     $("#container").css("display", "initial");
+//     //$('#'+e.target.id).css('border','4px solid;')
+//   } else {
+//     $("#container").css("display", "none");
+//     $(".containerPorte").hide();
+//   }
+// });
 
   function init() {
     console.log(device.type);

@@ -40,7 +40,7 @@ html {
   position: relative;
 }
 
-.containerPorte {
+.containerPorte,.mainObj {
   position: absolute;
 
   top: 0px;
@@ -52,7 +52,7 @@ html {
   height: 1856px;
 }
 /*Porte du configurateur */
-#container {
+#container,.containerObj {
   position: absolute;
   width: 20%;
   height: 20%;
@@ -63,7 +63,7 @@ html {
 
 /*    width: 203.75px; 
     height: 464px;*/
-.img {
+.img,.imgObj {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -71,9 +71,7 @@ html {
   background-size: 100%;
   background-repeat: no-repeat;
 }
-.img,
-#container {
-}
+
 .pt {
   position: absolute;
   width: 19%;
@@ -291,7 +289,7 @@ canvas {
 }
 
 @media (max-width: 900px) {
-  #container {
+  #container,.containerObj {
     width: 10%;
     height: 10%;
   }
