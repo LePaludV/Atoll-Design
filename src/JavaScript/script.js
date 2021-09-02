@@ -73,7 +73,7 @@ $(function () {
     });
   });
 
-  $("#container").draggable({ cancel: "div.pt, .slider" });
+  // $("#container").draggable({ cancel: "div.pt, .slider" });
 
   $("#container").on("taphold"),
     function () {

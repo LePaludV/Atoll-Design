@@ -41,7 +41,7 @@ $(function () {
     );
 
     $(".main").append(mainObj);
-  
+    containerObj.draggable({ cancel: "div.pt, .slider" });
     Obj_State.set(numObj, false);
     currentObj=numObj //Car quand on entre dans la fonction newObj on a forcement tous les obj locké (donc sur true)
     settingsObj(numObj, containerObj, imgObj);
@@ -96,6 +96,7 @@ $(function () {
   }
 
   $(".portes").click(function (e) {
+    $("div."+currentObj+".mainObj").show();
     //$(".containerPorte").show();
     //Regarde si il faut créer une porte ou pas : si on a une porte créer non locké -> il ne faut pas creér de porte
     checkCurrentObj()
@@ -112,12 +113,13 @@ $(function () {
       $("#" + e.target.id).css("opacity") == 1
     ) {
       //console.log(e.target.id);
-      $(".img").css("background-image", "url(" + e.target.src + ")");
-      $("#container").css("display", "initial");
+      //$(".img").css("background-image", "url(" + e.target.src + ")");
+      $("div."+currentObj+".imgObj").css("background-image", "url(" + e.target.src + ")");
+      $("div."+currentObj+".containerObj").css("display", "initial");
       //$('#'+e.target.id).css('border','4px solid;')
     } else {
-      $("#container").css("display", "none");
-      $(".containerPorte").hide();
+     $("div."+currentObj+".containerObj").css("display", "none");
+     $("div."+currentObj+".mainObj").hide();
     }
   });
 });
