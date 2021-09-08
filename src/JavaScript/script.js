@@ -1,30 +1,30 @@
 $(function () {
-  var container = $("#container");
-  var img = $(".img");
-  var pts = $(".pt");
+//   var container = $("#container");
+//   var img = $(".img");
+//   var pts = $(".pt");
 
-  var IMG_WIDTH = container.width();
-  var IMG_HEIGHT = container.height();
-  var etatPorte = 0;
+//   var IMG_WIDTH = container.width();
+//   var IMG_HEIGHT = container.height();
+//   var etatPorte = 0;
 
-  var transform = new PerspectiveTransform(img[0], IMG_WIDTH, IMG_HEIGHT, true);
+//   var transform = new PerspectiveTransform(img[0], IMG_WIDTH, IMG_HEIGHT, true);
 
-  var tl = pts.filter(".tl").css({
-    left: transform.topLeft.x,
-    top: transform.topLeft.y,
-  });
-  var tr = pts.filter(".tr").css({
-    left: transform.topRight.x,
-    top: transform.topRight.y,
-  });
-  var bl = pts.filter(".bl").css({
-    left: transform.bottomLeft.x,
-    top: transform.bottomLeft.y,
-  });
-  var br = pts.filter(".br").css({
-    left: transform.bottomRight.x,
-    top: transform.bottomRight.y,
-  });
+//   var tl = pts.filter(".tl").css({
+//     left: transform.topLeft.x,
+//     top: transform.topLeft.y,
+//   });
+//   var tr = pts.filter(".tr").css({
+//     left: transform.topRight.x,
+//     top: transform.topRight.y,
+//   });
+//   var bl = pts.filter(".bl").css({
+//     left: transform.bottomLeft.x,
+//     top: transform.bottomLeft.y,
+//   });
+//   var br = pts.filter(".br").css({
+//     left: transform.bottomRight.x,
+//     top: transform.bottomRight.y,
+//   });
 
   // var btnMiroir = $(".btnMiroir")
   //   .filter(".btnMiroir")
@@ -33,45 +33,46 @@ $(function () {
   //     top: transform.bottomRight.y / 2,
   //   });
 
-  var target;
-  var targetPoint;
+  // var target;
+  // var targetPoint;
+// TRANSFORMATION 
+  // function onMouseMove(e) {
+  //   targetPoint.x = e.pageX - container.offset().left - 20;
+  //   targetPoint.y = e.pageY - container.offset().top - 20;
+  //   target.css({
+  //     left: targetPoint.x,
+  //     top: targetPoint.y,
+  //   });
 
-  function onMouseMove(e) {
-    targetPoint.x = e.pageX - container.offset().left - 20;
-    targetPoint.y = e.pageY - container.offset().top - 20;
-    target.css({
-      left: targetPoint.x,
-      top: targetPoint.y,
-    });
+  //   // check the polygon error, if it's 0, which mean there is no error
+  //   if (transform.checkError() == 0) {
+  //     transform.update();
+  //     img.show();
+  //   } else {
+  //     img.hide();
+  //   }
+  // }
 
-    // check the polygon error, if it's 0, which mean there is no error
-    if (transform.checkError() == 0) {
-      transform.update();
-      img.show();
-    } else {
-      img.hide();
-    }
-  }
+  
+  // pts.mousedown(function (e) {
+  //   img.css("opacity", "0.6");
 
-  pts.mousedown(function (e) {
-    img.css("opacity", "0.6");
-
-    target = $(this);
-    targetPoint = target.hasClass("tl")
-      ? transform.topLeft
-      : target.hasClass("tr")
-      ? transform.topRight
-      : target.hasClass("bl")
-      ? transform.bottomLeft
-      : transform.bottomRight;
-    onMouseMove.apply(this, Array.prototype.slice.call(arguments));
-    $(window).mousemove(onMouseMove);
-    $(window).mouseup(function () {
-      img.css("opacity", "1");
-      //checkState();
-      $(window).unbind("mousemove", onMouseMove);
-    });
-  });
+  //   target = $(this);
+  //   targetPoint = target.hasClass("tl")
+  //     ? transform.topLeft
+  //     : target.hasClass("tr")
+  //     ? transform.topRight
+  //     : target.hasClass("bl")
+  //     ? transform.bottomLeft
+  //     : transform.bottomRight;
+  //   onMouseMove.apply(this, Array.prototype.slice.call(arguments));
+  //   $(window).mousemove(onMouseMove);
+  //   $(window).mouseup(function () {
+  //     img.css("opacity", "1");
+  //     //checkState();
+  //     $(window).unbind("mousemove", onMouseMove);
+  //   });
+  // });
 
   // $("#container").draggable({ cancel: "div.pt, .slider" });
 
@@ -220,7 +221,8 @@ besoin de le faire avec node.js server-side
     initPorte(nom);
   }
 
-  $(window).resize(function () {
+ /* 
+$(window).resize(function () {
     console.log("resize");
 
     var container = $("#container");
@@ -270,7 +272,7 @@ besoin de le faire avec node.js server-side
 
     $(".pt").hide();
     $(".pt").show();
-  });
+  });*/
 
   $(".Save").click(function () {
     // $("#div").children().attr("crossorigin", "anonymous");
@@ -290,33 +292,14 @@ besoin de le faire avec node.js server-side
     });
   });
 
-  //Bouton lock : verrouille la porte = les icnon disparaisse et plus possible de drag l'image.
-  var isLock = false;
-  $(".lock").click(function () {
-    if (isLock) {
-      $(".pt").show();
-      $(".slider").show();
-      $("#container").draggable("enable");
-      $(".lockImg").attr("src", "docs_sources/unlock.png");
-      $("#container").css("cursor", "move");
 
-      isLock = false;
-    } else {
-      $(".pt").hide();
-      $(".slider").hide();
-      $("#container").draggable("disable");
-      $(".lockImg").attr("src", "docs_sources/padlock.png");
-      $("#container").css("cursor", "not-allowed");
-      isLock = true;
-    }
-  });
 
-  var slider = document.getElementById("myRange");
+  // var slider = document.getElementById("myRange");
 
-  $(".img").css("filter", "brightness(" + slider.value + "%)");
+  // $(".img").css("filter", "brightness(" + slider.value + "%)");
 
-  slider.oninput = function () {
-    $(".img").css("filter", "brightness(" + this.value + "%)");
-  };
+  // slider.oninput = function () {
+  //   $(".img").css("filter", "brightness(" + this.value + "%)");
+  // };
   init();
 });

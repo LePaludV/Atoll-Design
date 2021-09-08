@@ -8,14 +8,12 @@ $(function () {
   */
   var Obj_State = new Map();
   var currentObj = null;
-
+  // btn pour créer ajouter un nouvelle obj
   $("#newobj").click(function () {
     newObj();
   });
   //Création DOM d"un nouvel objet
   function newObj() {
-   
-
     var mainObj = $("<div>", { class: numObj + " mainObj" }); // = old "containerPorte"
 
     var containerObj = $("<div>", { class: numObj + " containerObj" }); // = old "container"
@@ -27,7 +25,7 @@ $(function () {
       max: "100",
       value: "100",
       class: numObj + " form-range slider",
-      id: "myRange",
+      //id: "myRange",
     });
 
     var pt_tl = $("<div>", { class: numObj + " pt tl" });
@@ -43,13 +41,28 @@ $(function () {
     $(".main").append(mainObj);
     containerObj.draggable({ cancel: "div.pt, .slider" });
     Obj_State.set(numObj, false);
-    currentObj=numObj //Car quand on entre dans la fonction newObj on a forcement tous les obj locké (donc sur true)
-    settingsObj(numObj, containerObj, imgObj);
+    currentObj = numObj; //Car quand on entre dans la fonction newObj on a forcement tous les obj locké (donc sur true)
+    settingsObj(numObj, containerObj, imgObj, sliderLum);
     numObj += 1;
-  }
 
+    //Modification de la luminosité
+    const input = document.querySelectorAll(".slider");
+    console.log(input)
+    for(i in input){
+      console.log(input[i])
+      input[i].oninput = updateLum;
+    }
+    
+    
+  }
+  function updateLum(e) {
+    console.log("updateLum");
+    //Peut être vérifier sur quel objet on doit agir
+    var imgObj=$("div." + currentObj + ".imgObj")
+    imgObj.css("filter", "brightness(" + this.value + "%)");
+  }
   //Paramètre les poignées de l'objet qui doivent être dans les coins
-  function settingsObj(numObj, containerObj, imgObj) {
+  function settingsObj(numObj, containerObj, imgObj, sliderLum) {
     var pts = $(".pt");
     var IMG_WIDTH = containerObj.width();
     var IMG_HEIGHT = containerObj.height();
@@ -76,15 +89,59 @@ $(function () {
       left: transform.bottomRight.x,
       top: transform.bottomRight.y,
     });
+
+    //Transformation qaund on clique sur les poignées
+    var target;
+    var targetPoint;
+    var container = $("div." + currentObj + ".containerObj");
+    var img = $("div." + currentObj + ".imgObj");
+
+    function onMouseMove(e) {
+      targetPoint.x = e.pageX - container.offset().left - 20;
+      targetPoint.y = e.pageY - container.offset().top - 20;
+      target.css({
+        left: targetPoint.x,
+        top: targetPoint.y,
+      });
+
+      // check the polygon error, if it's 0, which mean there is no error
+      if (transform.checkError() == 0) {
+        transform.update();
+        img.show();
+      } else {
+        img.hide();
+      }
+    }
+
+    pts.mousedown(function (e) {
+      img.css("opacity", "0.6");
+
+      target = $(this);
+      targetPoint = target.hasClass("tl")
+        ? transform.topLeft
+        : target.hasClass("tr")
+        ? transform.topRight
+        : target.hasClass("bl")
+        ? transform.bottomLeft
+        : transform.bottomRight;
+      onMouseMove.apply(this, Array.prototype.slice.call(arguments));
+      $(window).mousemove(onMouseMove);
+      $(window).mouseup(function () {
+        img.css("opacity", "1");
+        //checkState();
+        $(window).unbind("mousemove", onMouseMove);
+      });
+    });
   }
+
   //Regarde dans la map quel objet n'est pas verrouillé (lequel a value=false) et met currentObj = key
   function checkCurrentObj() {
     for (var [key, value] of Obj_State) {
-      var nbrF=0;
-      if(value==false){
-        nbrF+=1;
-        if(nbrF>1){
-          console.log("ERROR !!! nbr value false > 1 "+nbrF)
+      var nbrF = 0;
+      if (value == false) {
+        nbrF += 1;
+        if (nbrF > 1) {
+          console.log("ERROR !!! nbr value false > 1 " + nbrF);
         }
       }
       if (value == false) {
@@ -96,17 +153,17 @@ $(function () {
   }
 
   $(".portes").click(function (e) {
-    $("div."+currentObj+".mainObj").show();
+    $("div." + currentObj + ".mainObj").show();
     //$(".containerPorte").show();
     //Regarde si il faut créer une porte ou pas : si on a une porte créer non locké -> il ne faut pas creér de porte
-    checkCurrentObj()
-    if(currentObj==null){
+    checkCurrentObj();
+    if (currentObj == null) {
       newObj();
     }
     //Sinon, on agit sur la porte "currentObj"
-    
-    var mainObj_currentObj=$("div."+currentObj+".mainObj");
-    console.log(mainObj_currentObj)
+
+    // var mainObj_currentObj = $("div." + currentObj + ".mainObj");
+    // console.log(mainObj_currentObj);
     //!!!
     if (
       e.target.id.includes("porteNuméro_") &&
@@ -114,12 +171,41 @@ $(function () {
     ) {
       //console.log(e.target.id);
       //$(".img").css("background-image", "url(" + e.target.src + ")");
-      $("div."+currentObj+".imgObj").css("background-image", "url(" + e.target.src + ")");
-      $("div."+currentObj+".containerObj").css("display", "initial");
+      $("div." + currentObj + ".imgObj").css(
+        "background-image",
+        "url(" + e.target.src + ")"
+      );
+      $("div." + currentObj + ".containerObj").css("display", "initial");
       //$('#'+e.target.id).css('border','4px solid;')
     } else {
-     $("div."+currentObj+".containerObj").css("display", "none");
-     $("div."+currentObj+".mainObj").hide();
+      $("div." + currentObj + ".containerObj").css("display", "none");
+      $("div." + currentObj + ".mainObj").hide();
     }
   });
+
+  //Lock : 
+
+    //Bouton lock : verrouille la porte = les icnon disparaisse et plus possible de drag l'image.
+    var isLock = false;
+    $(".lock").click(function () {
+      if (isLock) {
+        $(".pt").show();
+        $(".slider").show();
+        $("#container").draggable("enable");
+        $(".lockImg").attr("src", "docs_sources/unlock.png");
+        $("#container").css("cursor", "move");
+  
+        isLock = false;
+      } else {
+        $(".pt").hide();
+        $(".slider").hide();
+        $("#container").draggable("disable");
+        $(".lockImg").attr("src", "docs_sources/padlock.png");
+        $("#container").css("cursor", "not-allowed");
+        isLock = true;
+      }
+    });
+
+  //Resize de la fenetre :
+
 });
