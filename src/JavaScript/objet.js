@@ -10,6 +10,7 @@ $(function () {
   var currentObj = null;
   // btn pour créer ajouter un nouvelle obj
   $("#newobj").click(function () {
+    Lock();
     newObj();
   });
   //Création DOM d"un nouvel objet
@@ -47,18 +48,13 @@ $(function () {
 
     //Modification de la luminosité
     const input = document.querySelectorAll(".slider");
-    console.log(input)
-    for(i in input){
-      console.log(input[i])
+    for (i in input) {
       input[i].oninput = updateLum;
     }
-    
-    
   }
   function updateLum(e) {
-    console.log("updateLum");
     //Peut être vérifier sur quel objet on doit agir
-    var imgObj=$("div." + currentObj + ".imgObj")
+    var imgObj = $("div." + currentObj + ".imgObj");
     imgObj.css("filter", "brightness(" + this.value + "%)");
   }
   //Paramètre les poignées de l'objet qui doivent être dans les coins
@@ -183,37 +179,38 @@ $(function () {
     }
   });
 
-  //Lock : 
-
-    //Bouton lock : verrouille la porte = les icnon disparaisse et plus possible de drag l'image.
-    var isLock = false;
-    /*Verrouille l'objet en cours d'utilisation mais ne modifie pas son état (current obj ne change pas )
+  //Lock :
+  //Bouton lock : verrouille la porte = les icnon disparaisse et plus possible de drag l'image.
+  var isLock = false;
+  /*Verrouille l'objet en cours d'utilisation mais ne modifie pas son état (current obj ne change pas )
     quand on va appuyer sur le boutton lock c'est juste pour locker graphiquement l'obj.
     Que ce soit pour lock ou unlock on agit sur currentObj.
 
     Pour avoir plusieurs obj il faut appuyer sur le btn pour en ajouter ce qui lockera l'ancien currentObj
     et en créera un nouveau qui deviendra currentObj
     */
-    $(".lock").click(function () {
-      if(currentObj!=null){
+  $(".lock").click(Lock);
+
+  function Lock() {
+    if (currentObj != null) {
       if (isLock) {
-        $("div."+currentObj+".pt").show();
-        $("input."+currentObj+".slider").show();
-        $("div."+currentObj+".containerObj").draggable("enable");
+        $("div." + currentObj + ".pt").show();
+        $("input." + currentObj + ".slider").show();
+        $("div." + currentObj + ".containerObj").draggable("enable");
         $(".lockImg").attr("src", "docs_sources/unlock.png");
-        $("div."+currentObj+".containerObj").css("cursor", "move");
-  
+        $("div." + currentObj + ".containerObj").css("cursor", "move");
+
         isLock = false;
       } else {
-        $("div."+currentObj+".pt").hide();
-        $("input."+currentObj+".slider").hide();
-        $("div."+currentObj+".containerObj").draggable("disable");
+        $("div." + currentObj + ".pt").hide();
+        $("input." + currentObj + ".slider").hide();
+        $("div." + currentObj + ".containerObj").draggable("disable");
         $(".lockImg").attr("src", "docs_sources/padlock.png");
-        $("div."+currentObj+".containerObj").css("cursor", "not-allowed");
+        $("div." + currentObj + ".containerObj").css("cursor", "not-allowed");
         isLock = true;
-      }}
-    });
+      }
+    }
+  }
 
   //Resize de la fenetre :
-
 });
