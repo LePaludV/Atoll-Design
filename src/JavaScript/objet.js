@@ -187,23 +187,31 @@ $(function () {
 
     //Bouton lock : verrouille la porte = les icnon disparaisse et plus possible de drag l'image.
     var isLock = false;
+    /*Verrouille l'objet en cours d'utilisation mais ne modifie pas son état (current obj ne change pas )
+    quand on va appuyer sur le boutton lock c'est juste pour locker graphiquement l'obj.
+    Que ce soit pour lock ou unlock on agit sur currentObj.
+
+    Pour avoir plusieurs obj il faut appuyer sur le btn pour en ajouter ce qui lockera l'ancien currentObj
+    et en créera un nouveau qui deviendra currentObj
+    */
     $(".lock").click(function () {
+      if(currentObj!=null){
       if (isLock) {
-        $(".pt").show();
-        $(".slider").show();
-        $("#container").draggable("enable");
+        $("div."+currentObj+".pt").show();
+        $("input."+currentObj+".slider").show();
+        $("div."+currentObj+".containerObj").draggable("enable");
         $(".lockImg").attr("src", "docs_sources/unlock.png");
-        $("#container").css("cursor", "move");
+        $("div."+currentObj+".containerObj").css("cursor", "move");
   
         isLock = false;
       } else {
-        $(".pt").hide();
-        $(".slider").hide();
-        $("#container").draggable("disable");
+        $("div."+currentObj+".pt").hide();
+        $("input."+currentObj+".slider").hide();
+        $("div."+currentObj+".containerObj").draggable("disable");
         $(".lockImg").attr("src", "docs_sources/padlock.png");
-        $("#container").css("cursor", "not-allowed");
+        $("div."+currentObj+".containerObj").css("cursor", "not-allowed");
         isLock = true;
-      }
+      }}
     });
 
   //Resize de la fenetre :
