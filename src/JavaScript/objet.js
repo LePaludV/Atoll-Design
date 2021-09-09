@@ -43,7 +43,7 @@ $(function () {
     containerObj.draggable({ cancel: "div.pt, .slider" });
     Obj_State.set(numObj, false);
     currentObj = numObj; //Car quand on entre dans la fonction newObj on a forcement tous les obj locké (donc sur true)
-    settingsObj(numObj, containerObj, imgObj, sliderLum);
+    settingsObj(containerObj, imgObj);
     numObj += 1;
 
     //Modification de la luminosité
@@ -58,7 +58,7 @@ $(function () {
     imgObj.css("filter", "brightness(" + this.value + "%)");
   }
   //Paramètre les poignées de l'objet qui doivent être dans les coins
-  function settingsObj(numObj, containerObj, imgObj, sliderLum) {
+  function settingsObj(containerObj, imgObj) {
     var pts = $(".pt");
     var IMG_WIDTH = containerObj.width();
     var IMG_HEIGHT = containerObj.height();
@@ -89,12 +89,11 @@ $(function () {
     //Transformation qaund on clique sur les poignées
     var target;
     var targetPoint;
-    var container = $("div." + currentObj + ".containerObj");
-    var img = $("div." + currentObj + ".imgObj");
+    
 
     function onMouseMove(e) {
-      targetPoint.x = e.pageX - container.offset().left - 20;
-      targetPoint.y = e.pageY - container.offset().top - 20;
+      targetPoint.x = e.pageX - containerObj.offset().left - 20;
+      targetPoint.y = e.pageY - containerObj.offset().top - 20;
       target.css({
         left: targetPoint.x,
         top: targetPoint.y,
@@ -103,14 +102,14 @@ $(function () {
       // check the polygon error, if it's 0, which mean there is no error
       if (transform.checkError() == 0) {
         transform.update();
-        img.show();
+        imgObj.show();
       } else {
-        img.hide();
+        imgObj.hide();
       }
     }
 
     pts.mousedown(function (e) {
-      img.css("opacity", "0.6");
+      imgObj.css("opacity", "0.6");
 
       target = $(this);
       targetPoint = target.hasClass("tl")
@@ -123,7 +122,7 @@ $(function () {
       onMouseMove.apply(this, Array.prototype.slice.call(arguments));
       $(window).mousemove(onMouseMove);
       $(window).mouseup(function () {
-        img.css("opacity", "1");
+        imgObj.css("opacity", "1");
         //checkState();
         $(window).unbind("mousemove", onMouseMove);
       });
@@ -212,5 +211,5 @@ $(function () {
     }
   }
 
-  //Resize de la fenetre :
+
 });

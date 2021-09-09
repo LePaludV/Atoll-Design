@@ -221,12 +221,12 @@ besoin de le faire avec node.js server-side
     initPorte(nom);
   }
 
- /* 
+ 
 $(window).resize(function () {
     console.log("resize");
 
-    var container = $("#container");
-    var img = $(".img");
+    var container = $("#containerObj");
+    var img = $(".imgObj");
     var pts = $(".pt");
 
     var IMG_WIDTH = img.width();
@@ -272,7 +272,7 @@ $(window).resize(function () {
 
     $(".pt").hide();
     $(".pt").show();
-  });*/
+  });
 
   $(".Save").click(function () {
     // $("#div").children().attr("crossorigin", "anonymous");
