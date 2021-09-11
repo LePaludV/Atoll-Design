@@ -20,15 +20,7 @@ $(function () {
     var containerObj = $("<div>", { class: numObj + " containerObj" }); // = old "container"
 
     var imgObj = $("<div>", { class: numObj + " imgObj" }); // = old "img"
-    var sliderLum = $("<input>", {
-      type: "range",
-      min: "1",
-      max: "100",
-      value: "100",
-      class: numObj + " form-range slider",
-      //id: "myRange",
-    });
-
+    var sliderLum = $("<div>", { class: numObj + " form-range slider"});
     var pt_tl = $("<div>", { class: numObj + " pt tl" });
     var pt_tr = $("<div>", { class: numObj + " pt tr" });
     var pt_bl = $("<div>", { class: numObj + " pt bl" });
@@ -36,26 +28,37 @@ $(function () {
     var btnMiroir = $("<a>", { class: numObj + " btnMiroir" }); //not working for now
 
     mainObj.append(
-      containerObj.append(imgObj, sliderLum, pt_bl, pt_br, pt_tl, pt_tr)
+      containerObj.append(imgObj, pt_bl, pt_br, pt_tl, pt_tr,sliderLum)
     );
-
+    
     $(".main").append(mainObj);
-    containerObj.draggable({ cancel: "div.pt, .slider" });
+      
+    containerObj.draggable({
+      cancel: ".pt",sliderLum,
+      //containment: "parent",
+      opacity: 0.35,
+    });
+    sliderLum.slider({ orientation: "horizontal",
+    min:0,
+    max: 100,
+    value: 100,
+    slide:updateLum,
+  });
+
     Obj_State.set(numObj, false);
     currentObj = numObj; //Car quand on entre dans la fonction newObj on a forcement tous les obj locké (donc sur true)
     settingsObj(containerObj, imgObj);
     numObj += 1;
-
-    //Modification de la luminosité
-    const input = document.querySelectorAll(".slider");
-    for (i in input) {
-      input[i].oninput = updateLum;
-    }
+   
+   
+  
   }
-  function updateLum(e) {
+   //Modification de la luminosité
+  function updateLum(e,ui) {
+    console.log("ze",ui.value)
     //Peut être vérifier sur quel objet on doit agir
     var imgObj = $("div." + currentObj + ".imgObj");
-    imgObj.css("filter", "brightness(" + this.value + "%)");
+    imgObj.css("filter", "brightness(" + ui.value + "%)");
   }
   //Paramètre les poignées de l'objet qui doivent être dans les coins
   function settingsObj(containerObj, imgObj) {
@@ -89,7 +92,6 @@ $(function () {
     //Transformation qaund on clique sur les poignées
     var target;
     var targetPoint;
-    
 
     function onMouseMove(e) {
       targetPoint.x = e.pageX - containerObj.offset().left - 20;
@@ -194,7 +196,7 @@ $(function () {
     if (currentObj != null) {
       if (isLock) {
         $("div." + currentObj + ".pt").show();
-        $("input." + currentObj + ".slider").show();
+        $("div." + currentObj + ".slider").show();
         $("div." + currentObj + ".containerObj").draggable("enable");
         $(".lockImg").attr("src", "docs_sources/unlock.png");
         $("div." + currentObj + ".containerObj").css("cursor", "move");
@@ -202,7 +204,7 @@ $(function () {
         isLock = false;
       } else {
         $("div." + currentObj + ".pt").hide();
-        $("input." + currentObj + ".slider").hide();
+        $("div." + currentObj + ".slider").hide();
         $("div." + currentObj + ".containerObj").draggable("disable");
         $(".lockImg").attr("src", "docs_sources/padlock.png");
         $("div." + currentObj + ".containerObj").css("cursor", "not-allowed");
@@ -210,6 +212,4 @@ $(function () {
       }
     }
   }
-
-
 });

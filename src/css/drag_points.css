@@ -4,43 +4,35 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-image: -moz-radial-gradient(
-    50% 50%,
-    circle farthest-corner,
-    #fff 20%,
-    #efeee7
-  );
-  background-image: -webkit-radial-gradient(
-    50% 50%,
-    circle farthest-corner,
-    #fff 20%,
-    #efeee7
-  );
-  background-image: -o-radial-gradient(
-    50% 50%,
-    circle farthest-corner,
-    #fff 20%,
-    #efeee7
-  );
-  background-image: -ms-radial-gradient(
-    50% 50%,
-    circle farthest-corner,
-    #fff 20%,
-    #efeee7
-  );
-  background-image: radial-gradient(
-    50% 50%,
-    circle farthest-corner,
-    #fff 20%,
-    #efeee7
-  );
+  background-image: -moz-radial-gradient(50% 50%,
+      circle farthest-corner,
+      #fff 20%,
+      #efeee7);
+  background-image: -webkit-radial-gradient(50% 50%,
+      circle farthest-corner,
+      #fff 20%,
+      #efeee7);
+  background-image: -o-radial-gradient(50% 50%,
+      circle farthest-corner,
+      #fff 20%,
+      #efeee7);
+  background-image: -ms-radial-gradient(50% 50%,
+      circle farthest-corner,
+      #fff 20%,
+      #efeee7);
+  background-image: radial-gradient(50% 50%,
+      circle farthest-corner,
+      #fff 20%,
+      #efeee7);
 }
+
 html {
   min-height: 100%;
   position: relative;
 }
 
-.containerPorte,.mainObj {
+.containerPorte,
+.mainObj {
   position: absolute;
 
   top: 0px;
@@ -51,8 +43,10 @@ html {
   width: 815px;
   height: 1856px;
 }
+
 /*Porte du configurateur */
-#container,.containerObj {
+#container,
+.containerObj {
   position: absolute;
   width: 20%;
   height: 20%;
@@ -63,7 +57,8 @@ html {
 
 /*    width: 203.75px; 
     height: 464px;*/
-.img,.imgObj {
+.img,
+.imgObj {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -81,6 +76,7 @@ html {
   border-radius: 15px;
   cursor: pointer;
 }
+
 .tl {
   background-image: url(../docs_sources/poignee.png);
 }
@@ -94,6 +90,7 @@ html {
   background-image: url(../docs_sources/poignee.png);
   transform: rotate3d(1, 0, 0, 180deg);
 }
+
 .tr {
   background-image: url(../docs_sources/poignee.png);
   transform: rotate3d(0, 1, 0, 180deg);
@@ -127,6 +124,7 @@ html {
   height: 90vh;
   flex-wrap: initial !important;
 }
+
 #txtMain1 {
   font-size: 3vw;
   color: #999b9a;
@@ -144,10 +142,12 @@ html {
   margin-top: 5vh;
   margin-bottom: 1em;
 }
-.btnMain > img {
+
+.btnMain>img {
   width: 10%;
 }
-.btnMain > button {
+
+.btnMain>button {
   font-size: 90%;
 }
 
@@ -167,28 +167,31 @@ html {
   border-radius: 15px;
   cursor: pointer;
 }
-.btnMiroir:hover {
-}
+
+.btnMiroir:hover {}
+
 .btnMiroir:active {
   position: relative;
   top: 1px;
 }
+
 .container {
   display: flex;
   flex-wrap: wrap;
 }
+
 #header-menu {
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-color: transparent;
 }
+
 .drop-zone__input {
   display: none;
 }
 
-.drop-zone {
-}
+.drop-zone {}
 
 .drop-zone--over {
   border-style: solid;
@@ -227,6 +230,7 @@ html {
   width: 5%;
   transition: border 10ms ease-in-out 100ms;
 }
+
 .porte:hover {
   border: 3px solid;
 }
@@ -245,9 +249,11 @@ html {
   text-decoration: none;
   margin: auto;
 }
+
 .buttonImg:hover {
   background-color: #476e9e;
 }
+
 .buttonImg:active {
   position: relative;
   top: 1px;
@@ -258,6 +264,7 @@ canvas {
   width: 100%;
   height: 100%;
 }
+
 .btnPhoto {
   display: block;
 
@@ -289,7 +296,9 @@ canvas {
 }
 
 @media (max-width: 900px) {
-  #container,.containerObj {
+
+  #container,
+  .containerObj {
     width: 10%;
     height: 10%;
   }
@@ -299,20 +308,29 @@ canvas {
     height: 16%;
   }
 }
-.footer{
+
+.footer {
   padding-left: 2em;
   padding-right: 2em;
   height: 10vh;
-  
-}
-.footer img{
-  max-width: 5%;
-  height: auto;
-  
+
 }
 
-.slider {
-  position: absolute;
-display: inline-block;
-top: 55%;
+.footer img {
+  max-width: 5%;
+  height: auto;
+
+}
+
+.ui-slider {
+  top: 55%;
+  cursor: pointer;
+  height: 0.5em !important;
+}
+
+.ui-slider-handle {
+  cursor: pointer !important;
+  height: 1em !important;
+  border-radius: 50% !important;
+  width: 1em !important;
 }
